@@ -53,7 +53,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
             statusLabel.textColor = .yellow
         }
         else {
-            serial.startScan() 
+            serial.startScan()
         }
     }
 }
