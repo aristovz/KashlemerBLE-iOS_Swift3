@@ -84,7 +84,6 @@ class MonitoringChartView: LineChartView {
                 data.notifyDataChanged()
                 self.notifyDataSetChanged()
                 self.setNeedsLayout()
-                //self.invalidateIntrinsicContentSize()
             }
         }
     }

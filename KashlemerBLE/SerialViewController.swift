@@ -85,10 +85,11 @@ extension SerialViewController: BluetoothSerialDelegate {
     }
     
     func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
-//        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-//        hud?.mode = MBProgressHUDMode.text
-//        hud?.labelText = "Disconnected"
-//        hud?.hide(true, afterDelay: 1.0)
+        self.statusLabel.text = "Соединение прервано!"
+        self.statusLabel.textColor = .red
+        
+        serial.startScan()
+        self.statusIndicator.startAnimating()
     }
     
     func serialDidConnect(_ peripheral: CBPeripheral) {
