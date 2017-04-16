@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let deviceIdentifier = "EB422218-84F0-4F41-8368-A04BCBB986F1"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
