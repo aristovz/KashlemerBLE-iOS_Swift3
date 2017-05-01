@@ -1,9 +1,11 @@
 PODS:
+  - Alamofire (4.4.0)
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - Charts (from `https://github.com/danielgindi/Charts.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -17,8 +19,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/danielgindi/Charts.git
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Charts: e955b9a241a14a8971d70143002c8ab1610d26b6
 
-PODFILE CHECKSUM: c1cc0084609ca072311b3316fc2c05eee586bb27
+PODFILE CHECKSUM: 3896648bc9c414e8197acc9393643f31d0d4b3b1
 
 COCOAPODS: 1.2.0.beta.1

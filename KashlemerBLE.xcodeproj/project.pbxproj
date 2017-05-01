@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A82D53EB47FE28CA473AD02 /* Pods_KashlemerBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */; };
 		2F0E60531EA30BC60078C2EF /* MonitoringChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E60521EA30BC60078C2EF /* MonitoringChartView.swift */; };
+		2F2B16701EB783B500C022E1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B166F1EB783B500C022E1 /* API.swift */; };
+		2F2B16721EB7845100C022E1 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B16711EB7845100C022E1 /* Global.swift */; };
 		2F43E5421EA28019000029BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43E5411EA28019000029BF /* AppDelegate.swift */; };
 		2F43E5471EA28019000029BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F43E5451EA28019000029BF /* Main.storyboard */; };
 		2F43E54A1EA28019000029BF /* KashlemerBLE.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F43E5481EA28019000029BF /* KashlemerBLE.xcdatamodeld */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		2F0E60521EA30BC60078C2EF /* MonitoringChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringChartView.swift; sourceTree = "<group>"; };
+		2F2B166F1EB783B500C022E1 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		2F2B16711EB7845100C022E1 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2F43E53E1EA28019000029BF /* KashlemerBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KashlemerBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F43E5411EA28019000029BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F43E5461EA28019000029BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F2B166E1EB783A300C022E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F2B166F1EB783B500C022E1 /* API.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		2F43E5351EA28018000029BF = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +82,7 @@
 		2F43E5401EA28019000029BF /* KashlemerBLE */ = {
 			isa = PBXGroup;
 			children = (
+				2F2B166E1EB783A300C022E1 /* Model */,
 				2F933FA31EA2DA1100B32FB8 /* Support */,
 				2F933FA61EA2DD0A00B32FB8 /* SerialViewController.swift */,
 				2F43E5451EA28019000029BF /* Main.storyboard */,
@@ -96,6 +109,7 @@
 			children = (
 				2F933FA41EA2DBF000B32FB8 /* BluetoothSerial.swift */,
 				2F0E60521EA30BC60078C2EF /* MonitoringChartView.swift */,
+				2F2B16711EB7845100C022E1 /* Global.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -237,7 +251,9 @@
 				2F43E54A1EA28019000029BF /* KashlemerBLE.xcdatamodeld in Sources */,
 				2F43E5421EA28019000029BF /* AppDelegate.swift in Sources */,
 				2F933FA51EA2DBF000B32FB8 /* BluetoothSerial.swift in Sources */,
+				2F2B16701EB783B500C022E1 /* API.swift in Sources */,
 				2F933FA71EA2DD0B00B32FB8 /* SerialViewController.swift in Sources */,
+				2F2B16721EB7845100C022E1 /* Global.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
