@@ -12,7 +12,7 @@ import Charts
 class MonitoringChartView: LineChartView {
     private var _setColor: UIColor = .blue
     
-    var maxEntryCount = 1000
+    var maxEntryCount = 150
     
     func initChartView(_ setColor: UIColor = .blue) {
         self.data = LineChartData()
@@ -29,6 +29,7 @@ class MonitoringChartView: LineChartView {
         self.xAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 9)!
         
         self.doubleTapToZoomEnabled = false
+        self.dragEnabled = false
     }
     
     var dataSet: LineChartDataSet? {

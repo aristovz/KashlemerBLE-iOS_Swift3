@@ -1,9 +1,5 @@
 #!/bin/sh
 set -e
-KG_FILE="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pods-KashlemerBLE-frameworks-Installation-Flag"
-if [ -f "$KG_FILE" ]; then exit 0; fi
-mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
-touch "$KG_FILE"
 
 echo "mkdir -p ${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"

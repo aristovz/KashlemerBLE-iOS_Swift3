@@ -17,8 +17,16 @@
 		2F43E54C1EA28019000029BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F43E54B1EA28019000029BF /* Assets.xcassets */; };
 		2F43E54F1EA28019000029BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F43E54D1EA28019000029BF /* LaunchScreen.storyboard */; };
 		2F43E55A1EA28596000029BF /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F43E5591EA28596000029BF /* CoreBluetooth.framework */; };
+		2F82B8551EBB7FF10080B24B /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B8541EBB7FF10080B24B /* Audio.swift */; };
+		2F82B8591EBB89B30080B24B /* AudioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B8581EBB89B30080B24B /* AudioListController.swift */; };
+		2F82B85B1EBB932F0080B24B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B85A1EBB932F0080B24B /* Extension.swift */; };
+		2F82B85D1EBBA11D0080B24B /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B85C1EBBA11D0080B24B /* MusicPlayer.swift */; };
+		2F82B85F1EBBE1B60080B24B /* AudioDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B85E1EBBE1B60080B24B /* AudioDetailController.swift */; };
+		2F82B8611EBBF1820080B24B /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B8601EBBF1820080B24B /* ChartViewController.swift */; };
 		2F933FA51EA2DBF000B32FB8 /* BluetoothSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F933FA41EA2DBF000B32FB8 /* BluetoothSerial.swift */; };
 		2F933FA71EA2DD0B00B32FB8 /* SerialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F933FA61EA2DD0A00B32FB8 /* SerialViewController.swift */; };
+		2FCBED281EBA11CA005CAEF9 /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */; };
+		2FCBED2A1EBA11EB005CAEF9 /* DataChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +41,16 @@
 		2F43E54E1EA28019000029BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F43E5501EA28019000029BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F43E5591EA28596000029BF /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		2F82B8541EBB7FF10080B24B /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		2F82B8581EBB89B30080B24B /* AudioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioListController.swift; sourceTree = "<group>"; };
+		2F82B85A1EBB932F0080B24B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		2F82B85C1EBBA11D0080B24B /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		2F82B85E1EBBE1B60080B24B /* AudioDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDetailController.swift; sourceTree = "<group>"; };
+		2F82B8601EBBF1820080B24B /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		2F933FA41EA2DBF000B32FB8 /* BluetoothSerial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothSerial.swift; sourceTree = "<group>"; };
 		2F933FA61EA2DD0A00B32FB8 /* SerialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialViewController.swift; sourceTree = "<group>"; };
+		2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
+		2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataChartView.xib; sourceTree = "<group>"; };
 		D46E13902CD65466D0B8BB0E /* Pods-KashlemerBLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.debug.xcconfig"; sourceTree = "<group>"; };
 		D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KashlemerBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0981BCC8B60797662E821A2 /* Pods-KashlemerBLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.release.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.release.xcconfig"; sourceTree = "<group>"; };
@@ -57,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				2F2B166F1EB783B500C022E1 /* API.swift */,
+				2F82B8541EBB7FF10080B24B /* Audio.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -82,9 +99,13 @@
 		2F43E5401EA28019000029BF /* KashlemerBLE */ = {
 			isa = PBXGroup;
 			children = (
+				2FCBED241EBA10F9005CAEF9 /* ChartView */,
 				2F2B166E1EB783A300C022E1 /* Model */,
 				2F933FA31EA2DA1100B32FB8 /* Support */,
 				2F933FA61EA2DD0A00B32FB8 /* SerialViewController.swift */,
+				2F82B8581EBB89B30080B24B /* AudioListController.swift */,
+				2F82B85E1EBBE1B60080B24B /* AudioDetailController.swift */,
+				2F82B8601EBBF1820080B24B /* ChartViewController.swift */,
 				2F43E5451EA28019000029BF /* Main.storyboard */,
 				2F43E54D1EA28019000029BF /* LaunchScreen.storyboard */,
 				2F43E54B1EA28019000029BF /* Assets.xcassets */,
@@ -110,8 +131,19 @@
 				2F933FA41EA2DBF000B32FB8 /* BluetoothSerial.swift */,
 				2F0E60521EA30BC60078C2EF /* MonitoringChartView.swift */,
 				2F2B16711EB7845100C022E1 /* Global.swift */,
+				2F82B85A1EBB932F0080B24B /* Extension.swift */,
+				2F82B85C1EBBA11D0080B24B /* MusicPlayer.swift */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		2FCBED241EBA10F9005CAEF9 /* ChartView */ = {
+			isa = PBXGroup;
+			children = (
+				2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */,
+				2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */,
+			);
+			name = ChartView;
 			sourceTree = "<group>";
 		};
 		8C895C30A4802E991E1ECCCE /* Pods */ = {
@@ -187,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F43E54F1EA28019000029BF /* LaunchScreen.storyboard in Resources */,
+				2FCBED2A1EBA11EB005CAEF9 /* DataChartView.xib in Resources */,
 				2F43E54C1EA28019000029BF /* Assets.xcassets in Resources */,
 				2F43E5471EA28019000029BF /* Main.storyboard in Resources */,
 			);
@@ -247,13 +280,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F82B8551EBB7FF10080B24B /* Audio.swift in Sources */,
+				2F82B8611EBBF1820080B24B /* ChartViewController.swift in Sources */,
 				2F0E60531EA30BC60078C2EF /* MonitoringChartView.swift in Sources */,
+				2F82B85D1EBBA11D0080B24B /* MusicPlayer.swift in Sources */,
 				2F43E54A1EA28019000029BF /* KashlemerBLE.xcdatamodeld in Sources */,
 				2F43E5421EA28019000029BF /* AppDelegate.swift in Sources */,
+				2F82B85B1EBB932F0080B24B /* Extension.swift in Sources */,
 				2F933FA51EA2DBF000B32FB8 /* BluetoothSerial.swift in Sources */,
 				2F2B16701EB783B500C022E1 /* API.swift in Sources */,
+				2FCBED281EBA11CA005CAEF9 /* DataChartView.swift in Sources */,
 				2F933FA71EA2DD0B00B32FB8 /* SerialViewController.swift in Sources */,
+				2F82B8591EBB89B30080B24B /* AudioListController.swift in Sources */,
 				2F2B16721EB7845100C022E1 /* Global.swift in Sources */,
+				2F82B85F1EBBE1B60080B24B /* AudioDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

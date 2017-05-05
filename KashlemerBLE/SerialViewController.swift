@@ -13,29 +13,45 @@ import AVFoundation
 
 final class SerialViewController: UIViewController, UITextFieldDelegate {
     
-    //MARK: IBOutlets
-    @IBOutlet weak var pullingChart: MonitoringChartView!
-    @IBOutlet weak var xValueChart: MonitoringChartView!
-    @IBOutlet weak var yValueChart: MonitoringChartView!
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var statusIndicator: UIActivityIndicatorView!
     @IBOutlet weak var statusLabel: UILabel!
-    
-    @IBOutlet weak var pullingLabel: UILabel!
-    @IBOutlet weak var xLabel: UILabel!
-    @IBOutlet weak var yLabel: UILabel!
     
     @IBOutlet weak var networkStatusLabel: UILabel!
     
     @IBOutlet weak var rightBarButtonOutlet: UIBarButtonItem!
     
+    @IBOutlet weak var recordButtonOutlet: UIButton!
+    
     //MARK: Variables
+    
+    var pullingChartView: DataChartView!
+    var xValueChartView: DataChartView!
+    var yValueChartView: DataChartView!
+    var zValueChartView: DataChartView!
+    
+    var tmpChartView: DataChartView!
+    
+    var GyXValueChartView: DataChartView!
+    var GyYValueChartView: DataChartView!
+    var GyZValueChartView: DataChartView!
+    
+    let names = ["Натяжение", "AcX", "AcY", "AcZ", "Tmp", "GyX", "GyY", "GyZ"]
+    
+    var charts = [DataChartView?]()
+    var data = [[Double](), [Double](), [Double](), [Double](), [Double](), [Double](), [Double](), [Double]()]
+    
+    private var timer: Timer?
+    var seconds = 0
     
     fileprivate var tempString = ""
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     
+    var isRecordStarted = false
+
     var detected = false
     
     var prevAudioURL: URL {
@@ -67,7 +83,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
             recordingSession.requestRecordPermission() { [unowned self] allowed in
                 DispatchQueue.main.async {
                     if allowed {
-                        self.startRecording()
+                        //self.startRecording()
                     } else {
                         // failed to record!
                     }
@@ -81,17 +97,33 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         serial = BluetoothSerial(delegate: self)
         
         //init charts
-        pullingChart.initChartView()
-        xValueChart.initChartView(.purple)
-        yValueChart.initChartView(.black)
+        setupScrollView()
+    }
+    
+    func setupScrollView() {
+        let size = CGSize(width: UIScreen.main.bounds.width, height: 130)
+        var location = CGPoint(x: 0, y: 0)
+        
+        let space: CGFloat = 5
+        
+        charts = [pullingChartView, xValueChartView, yValueChartView, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
+        for k in 0..<charts.count {
+            charts[k] = DataChartView(frame: CGRect(origin: location, size: size))
+            charts[k]?.titleLabel.text = names[k] + ":"
+            
+            self.scrollView.addSubview(charts[k]!)
+            location.y += size.height + space
+        }
+        
+        self.scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: location.y)
     }
     
     func startRecording() {
         
         let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVFormatIDKey: Int(kAudioFormatAppleLossless),
             AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
+            AVNumberOfChannelsKey: 2,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
         
@@ -103,15 +135,40 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
             finishRecording(success: false)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeLapse)) {
-            self.finishRecording(success: true)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeLapse)) {
+//            self.finishRecording(success: true)
+////            print("3 sec")
+//        }
     }
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+    
+    func start() {
+        guard timer == nil else { return }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.runTimedCode), userInfo: nil, repeats: true)
+        
+        startRecording()
+    }
+    
+    func stop() {
+        guard timer != nil else { return }
+        timer?.invalidate()
+        timer = nil
+        
+        finishRecording(success: true)
+    }
+    
+    
+    func runTimedCode() {
+        seconds += 1
+        let minutes = Int(seconds / 60)
+        let sec = seconds % 60
+        
+        networkStatusLabel.text = "\(minutes < 10 ? "0" : "")\(minutes):\(sec < 10 ? "0" : "")\(sec) Идет запись..."
     }
     
     //MARK: Actions
@@ -123,10 +180,31 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         else {
             serial.startScan()
         }
+
+//        detected = true
+//        self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
+    }
+    
+    @IBAction func recordButtonAction(_ sender: UIButton) {
+        if !isRecordStarted {
+            isRecordStarted = true
+            recordButtonOutlet.setImage(#imageLiteral(resourceName: "stop"), for: .normal)
+            start()
+            networkStatusLabel.text = "00:00 Идет запись..."
+
+        }
+        else {
+            isRecordStarted = false
+            recordButtonOutlet.setImage(#imageLiteral(resourceName: "record"), for: .normal)
+            stop()
+            seconds = 0
+            
+        }
     }
 }
 
 //MARK: AVAudioRecorderDelegate
+
 extension SerialViewController: AVAudioRecorderDelegate {
     
     func merge(audioFiles: [URL], completion: @escaping (URL?) -> ()) {
@@ -238,8 +316,33 @@ extension SerialViewController: AVAudioRecorderDelegate {
                 })
             }
             
-            replaceAudio()
-            startRecording()
+            self.networkStatusLabel.text = "Запись завершена!"
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.networkStatusLabel.text = "Отправка на сервер"
+                
+                var dataArr = [String: [Double]]()
+                let nam = ["pull", "acx", "acy", "acz", "tmp", "gyx", "gyy", "gyz"]
+                
+                for k in 0..<self.data.count {
+                    dataArr[nam[k]] = self.data[k]
+                }
+                
+                API.uploadAudioWithData(from: self.currentAudioURL, with: dataArr, requestEnd: { (success) in
+                    self.networkStatusLabel.text = "Загрузка на сервер завершена!"
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                        self.networkStatusLabel.text = "Начать запись"
+                    })
+                    
+                    for k in 0..<self.data.count {
+                        self.data[k].removeAll()
+                    }
+                })
+            })
+            
+            //replaceAudio()
+            //startRecording()
         }
     }
     
@@ -263,22 +366,18 @@ extension SerialViewController: BluetoothSerialDelegate {
         for row in dataArray {
             let values = row.components(separatedBy: " ")
             
-            if values.count == 8 {
-                pullingLabel.text = values[0]
-                if let value = Double(values[0]) {
-                    if value > 1000 && detected == false {
-                        detected = true
-                        self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
+            if values.count == charts.count {
+                for k in 0..<values.count {
+                    if let value = Double(values[k]), charts[k] != nil {
+                        self.charts[k]!.addEntry(value: value)
+                        self.data[k].append(value)
+                        
+                        if k == 0 && value > 1000 && detected == false {
+                            detected = true
+                            self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
+                        }
                     }
-                    
-                    pullingChart.addEntry(value: value)
                 }
-                
-                xLabel.text = values[1]
-                if let value = Double(values[1]) { xValueChart.addEntry(value: value) }
-                
-                yLabel.text = values[2]
-                if let value = Double(values[2]) { yValueChart.addEntry(value: value) }
             }
         }
     }
