@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import Darwin
 
 class DataChartView: UIView {
 
     @IBOutlet weak var chartView: MonitoringChartView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var sliderOutlet: UISlider!
+    
+    var limit = 20
+    var buffer = [Double]()
+    var avrg = 0.0
+//    var porog: Int {
+//        get {
+//            return Int(sliderOutlet.value)
+//        }
+//    }
+    var countAvrg: UInt = 0
     
     // MARK: - Initializers
     
@@ -57,6 +69,38 @@ class DataChartView: UIView {
 
     func addEntry(value: Double) {
         dataLabel.text = "\(value)"
+        //print("\(tag) - \(avrg)")
         chartView.addEntry(value: value)
+        
+        buffer.append(value)
+        
+        if buffer.count > limit - 1 {
+            print(Date().timeIntervalSince(timeStart))
+            dataLabel.textColor = checkCough() ? .red : .green
+            buffer.removeAll()
+            timeStart = Date()
+        }
     }
+    var timeStart = Date()
+    private func checkCough() -> Bool {
+        var sum = 0.0
+        buffer.forEach({ sum += $0})//pow(, 2.0) })
+        sum /= Double(limit)
+
+//        avrg = (avrg * Double(countAvrg) + sum) / Double(countAvrg + 1)
+//        countAvrg += 1
+        
+        print("\(tag) - \(buffer.max()!) - \(sum) = \(buffer.max()! - sum)")
+        
+        //dataLabel.text = "\(sum)"
+        //chartView.addEntry(value: sum)
+        
+        return buffer.max()! - sum > Double(sliderOutlet.value)
+    }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        titleLabel.text = "\(Int(sender.value))"
+        buffer.removeAll()
+    }
+    
 }

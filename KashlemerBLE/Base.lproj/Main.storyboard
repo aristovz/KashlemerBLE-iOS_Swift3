@@ -39,9 +39,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0S-sq-KeK">
-                                <rect key="frame" x="0.0" y="139" width="375" height="528"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0S-sq-KeK">
+                                <rect key="frame" x="0.0" y="178" width="375" height="489"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anM-Z3-ndV">
                                 <rect key="frame" x="16" y="106" width="30" height="30"/>
@@ -54,18 +53,31 @@
                                     <action selector="recordButtonAction:" destination="PKn-bT-arh" eventType="touchUpInside" id="A6M-e3-S8f"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="20" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SgT-ks-pbP">
+                                <rect key="frame" x="14" y="140" width="347" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="PKn-bT-arh" eventType="valueChanged" id="WhO-ye-cqf"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="KxR-IH-I8i" firstAttribute="top" secondItem="0mg-ec-tLC" secondAttribute="bottom" constant="5.5" id="1rO-am-flh"/>
+                            <constraint firstItem="N0S-sq-KeK" firstAttribute="leading" secondItem="dXB-qP-Brg" secondAttribute="leading" id="2Gd-Td-cZc"/>
                             <constraint firstItem="0mg-ec-tLC" firstAttribute="top" secondItem="Yck-9Y-G63" secondAttribute="bottom" constant="16" id="2uu-uq-5ZX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="anM-Z3-ndV" secondAttribute="leading" id="9zk-aP-E0p"/>
                             <constraint firstItem="KxR-IH-I8i" firstAttribute="centerX" secondItem="0mg-ec-tLC" secondAttribute="centerX" id="B2S-nK-e0i"/>
                             <constraint firstItem="0mg-ec-tLC" firstAttribute="centerX" secondItem="dXB-qP-Brg" secondAttribute="centerX" id="CmC-ta-ARd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="SgT-ks-pbP" secondAttribute="leading" id="FgW-Fg-8CH"/>
+                            <constraint firstItem="SgT-ks-pbP" firstAttribute="top" secondItem="KxR-IH-I8i" secondAttribute="bottom" constant="8" id="IqB-ap-EN7"/>
                             <constraint firstItem="KxR-IH-I8i" firstAttribute="leading" secondItem="anM-Z3-ndV" secondAttribute="trailing" constant="10" id="J5U-0A-b1I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SgT-ks-pbP" secondAttribute="trailing" id="JLc-dw-qyv"/>
+                            <constraint firstItem="TDA-MT-ali" firstAttribute="top" secondItem="N0S-sq-KeK" secondAttribute="bottom" id="O3l-Qh-ogr"/>
                             <constraint firstItem="0mg-ec-tLC" firstAttribute="leading" secondItem="eCa-p0-Qy6" secondAttribute="trailing" constant="8" id="Os7-hi-TXX"/>
                             <constraint firstItem="eCa-p0-Qy6" firstAttribute="centerY" secondItem="0mg-ec-tLC" secondAttribute="centerY" id="Rxa-Qj-o8B"/>
                             <constraint firstItem="anM-Z3-ndV" firstAttribute="top" secondItem="0mg-ec-tLC" secondAttribute="bottom" constant="0.5" id="XJQ-yY-7Dd"/>
+                            <constraint firstItem="N0S-sq-KeK" firstAttribute="top" secondItem="SgT-ks-pbP" secondAttribute="bottom" constant="8" id="sve-og-4EO"/>
+                            <constraint firstAttribute="trailing" secondItem="N0S-sq-KeK" secondAttribute="trailing" id="uOF-X0-6CO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="KashlemerBLE" id="fvO-eq-qmG">
@@ -139,7 +151,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2G2-Fb-mSf" id="13m-Hh-cgG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1231511231234.m4a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV8-pZ-xbZ">

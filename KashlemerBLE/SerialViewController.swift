@@ -10,6 +10,7 @@ import UIKit
 import CoreBluetooth
 import Charts
 import AVFoundation
+import Darwin
 
 final class SerialViewController: UIViewController, UITextFieldDelegate {
     
@@ -37,12 +38,12 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
     var GyYValueChartView: DataChartView!
     var GyZValueChartView: DataChartView!
     
-    let names = ["Натяжение", "AcX", "AcY", "AcZ", "Tmp", "GyX", "GyY", "GyZ"]
+    let names = ["Натяжение", "AcY", "AcZ"] //"AcX", "Tmp", "GyX", "GyY", "GyZ"
     
     var charts = [DataChartView?]()
-    var data = [[Double](), [Double](), [Double](), [Double](), [Double](), [Double](), [Double](), [Double]()]
+    var data = [[Double](), [Double](), [Double]()]//, [Double](), [Double](), [Double](), [Double](), [Double]()]
     
-    private var timer: Timer?
+    var timer: Timer?
     var seconds = 0
     
     fileprivate var tempString = ""
@@ -80,7 +81,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
+            recordingSession.requestRecordPermission() { allowed in
                 DispatchQueue.main.async {
                     if allowed {
                         //self.startRecording()
@@ -89,9 +90,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
-        } catch {
-            // failed to record!
-        }
+        } catch { }
         
         // init serial
         serial = BluetoothSerial(delegate: self)
@@ -106,10 +105,16 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         
         let space: CGFloat = 5
         
-        charts = [pullingChartView, xValueChartView, yValueChartView, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
+        charts = [pullingChartView, xValueChartView, yValueChartView]//, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
         for k in 0..<charts.count {
             charts[k] = DataChartView(frame: CGRect(origin: location, size: size))
+            charts[k]?.tag = k
             charts[k]?.titleLabel.text = names[k] + ":"
+            
+            if k == 0 {
+                charts[k]?.sliderOutlet.minimumValue = 10
+                charts[k]?.sliderOutlet.maximumValue = 2000
+            }
             
             self.scrollView.addSubview(charts[k]!)
             location.y += size.height + space
@@ -162,7 +167,6 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         finishRecording(success: true)
     }
     
-    
     func runTimedCode() {
         seconds += 1
         let minutes = Int(seconds / 60)
@@ -180,7 +184,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         else {
             serial.startScan()
         }
-
+        
 //        detected = true
 //        self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
     }
@@ -201,6 +205,12 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        networkStatusLabel.text = "\(Int(sender.value))"
+        charts.forEach({ $0?.limit = Int(sender.value) })
+    }
+    
 }
 
 //MARK: AVAudioRecorderDelegate
@@ -365,18 +375,19 @@ extension SerialViewController: BluetoothSerialDelegate {
         
         for row in dataArray {
             let values = row.components(separatedBy: " ")
-            
-            if values.count == charts.count {
-                for k in 0..<values.count {
+            if values.count == 8 {//charts.count {
+                for k in 0..<charts.count {
                     if let value = Double(values[k]), charts[k] != nil {
-                        self.charts[k]!.addEntry(value: value)
-                        self.data[k].append(value)
+//                        if k != 0 {
+//                            value /= 1700.0
+//                        }
                         
-                        if k == 0 && value > 1000 && detected == false {
-                            detected = true
-                            self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
+                        self.charts[k]!.addEntry(value: value)
+                        
+                        if timer != nil {
+                            self.data[k].append(value)
                         }
-                    }
+                    }	
                 }
             }
         }
