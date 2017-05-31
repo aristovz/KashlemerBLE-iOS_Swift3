@@ -1,11 +1,13 @@
 PODS:
   - Alamofire (4.4.0)
+  - AudioKit (3.7)
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - AudioKit
   - Charts (from `https://github.com/danielgindi/Charts.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -20,8 +22,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AudioKit: 73c43705575e483623bf3cf306f823a8677aebdd
   Charts: e955b9a241a14a8971d70143002c8ab1610d26b6
 
-PODFILE CHECKSUM: 87c59d4473c4c7bb5959c28a960a27580d654518
+PODFILE CHECKSUM: f67f5f723748b8e0a483032e17cf3c3910ce2a33
 
 COCOAPODS: 1.2.0.beta.1

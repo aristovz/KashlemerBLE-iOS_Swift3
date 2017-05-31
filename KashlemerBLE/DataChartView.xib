@@ -13,13 +13,14 @@
             <connections>
                 <outlet property="chartView" destination="miU-mG-hkC" id="p1D-lF-Iis"/>
                 <outlet property="dataLabel" destination="82J-kk-aQf" id="ZHf-B3-ILq"/>
+                <outlet property="porogLabel" destination="dqf-QU-IUt" id="cDo-oz-I2G"/>
                 <outlet property="sliderOutlet" destination="1bk-84-Lrg" id="kaV-bA-0WR"/>
                 <outlet property="titleLabel" destination="8lc-PF-Evc" id="rjT-H3-STY"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="zTr-jy-v5O">
-            <rect key="frame" x="0.0" y="0.0" width="464" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="464" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Натяжение: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lc-PF-Evc">
@@ -29,43 +30,54 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82J-kk-aQf">
-                    <rect key="frame" x="115" y="8" width="50" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="EvG-2F-FRJ"/>
-                    </constraints>
+                    <rect key="frame" x="115" y="8" width="9.5" height="20"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="miU-mG-hkC" customClass="MonitoringChartView" customModule="KashlemerBLE" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="36" width="464" height="94"/>
+                    <rect key="frame" x="0.0" y="66" width="464" height="84"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="100" maxValue="20000" translatesAutoresizingMaskIntoConstraints="NO" id="1bk-84-Lrg">
-                    <rect key="frame" x="170.5" y="3" width="275.5" height="31"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="271.5" id="rrk-Lu-XRv"/>
-                    </constraints>
+                    <rect key="frame" x="6" y="32" width="440" height="31"/>
                     <connections>
                         <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="Qvj-IH-y1d"/>
                     </connections>
                 </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Порог:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87H-1G-cKh">
+                    <rect key="frame" x="372.5" y="8" width="54" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqf-QU-IUt">
+                    <rect key="frame" x="434.5" y="8" width="9.5" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="miU-mG-hkC" secondAttribute="bottom" id="1lR-E7-chU"/>
+                <constraint firstItem="1bk-84-Lrg" firstAttribute="leading" secondItem="zTr-jy-v5O" secondAttribute="leading" constant="8" id="2f9-Uw-P5N"/>
                 <constraint firstItem="8lc-PF-Evc" firstAttribute="leading" secondItem="zTr-jy-v5O" secondAttribute="leading" constant="8" id="3xx-zw-rms"/>
                 <constraint firstItem="8lc-PF-Evc" firstAttribute="top" secondItem="zTr-jy-v5O" secondAttribute="top" constant="8" id="4wJ-Sg-t4Q"/>
                 <constraint firstItem="82J-kk-aQf" firstAttribute="leading" secondItem="8lc-PF-Evc" secondAttribute="trailing" constant="8" id="6tm-8K-uJc"/>
-                <constraint firstItem="miU-mG-hkC" firstAttribute="top" secondItem="82J-kk-aQf" secondAttribute="bottom" constant="8" id="8Ih-yP-hwB"/>
+                <constraint firstItem="1bk-84-Lrg" firstAttribute="top" secondItem="82J-kk-aQf" secondAttribute="bottom" constant="4" id="984-Av-gin"/>
+                <constraint firstItem="dqf-QU-IUt" firstAttribute="centerY" secondItem="87H-1G-cKh" secondAttribute="centerY" id="EPB-JQ-IWr"/>
                 <constraint firstItem="miU-mG-hkC" firstAttribute="leading" secondItem="zTr-jy-v5O" secondAttribute="leading" id="G1Q-3r-Wp9"/>
+                <constraint firstItem="dqf-QU-IUt" firstAttribute="leading" secondItem="87H-1G-cKh" secondAttribute="trailing" constant="8" id="GR8-nk-9hT"/>
+                <constraint firstAttribute="trailing" secondItem="dqf-QU-IUt" secondAttribute="trailing" constant="20" id="Hs4-SE-MFs"/>
                 <constraint firstItem="82J-kk-aQf" firstAttribute="centerY" secondItem="8lc-PF-Evc" secondAttribute="centerY" id="KVt-Va-2GI"/>
-                <constraint firstItem="1bk-84-Lrg" firstAttribute="centerY" secondItem="82J-kk-aQf" secondAttribute="centerY" id="X8t-Tb-yda"/>
-                <constraint firstAttribute="trailing" secondItem="1bk-84-Lrg" secondAttribute="trailing" constant="20" id="lnZ-7m-zdL"/>
+                <constraint firstItem="87H-1G-cKh" firstAttribute="centerY" secondItem="82J-kk-aQf" secondAttribute="centerY" id="Kuq-Sp-FS4"/>
+                <constraint firstAttribute="trailing" secondItem="1bk-84-Lrg" secondAttribute="trailing" constant="20" id="SXM-I0-co2"/>
                 <constraint firstAttribute="trailing" secondItem="miU-mG-hkC" secondAttribute="trailing" id="r8w-bQ-4wH"/>
+                <constraint firstItem="miU-mG-hkC" firstAttribute="top" secondItem="1bk-84-Lrg" secondAttribute="bottom" constant="4" id="vsx-Ve-Ad1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="73" y="-121"/>
+            <point key="canvasLocation" x="73" y="-111"/>
         </view>
     </objects>
 </document>

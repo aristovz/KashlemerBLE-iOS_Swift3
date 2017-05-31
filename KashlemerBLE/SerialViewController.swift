@@ -11,8 +11,9 @@ import CoreBluetooth
 import Charts
 import AVFoundation
 import Darwin
+import AudioKit
 
-final class SerialViewController: UIViewController, UITextFieldDelegate {
+class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -26,6 +27,8 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var recordButtonOutlet: UIButton!
     
     //MARK: Variables
+    var micTracker = AKMicrophoneTracker()
+    var micChartView: DataChartView!
     
     var pullingChartView: DataChartView!
     var xValueChartView: DataChartView!
@@ -38,10 +41,10 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
     var GyYValueChartView: DataChartView!
     var GyZValueChartView: DataChartView!
     
-    let names = ["Натяжение", "AcY", "AcZ"] //"AcX", "Tmp", "GyX", "GyY", "GyZ"
+    let names = ["Ampl", "Натяжение", "AcY", "AcZ"] //"AcX", "Tmp", "GyX", "GyY", "GyZ"
     
     var charts = [DataChartView?]()
-    var data = [[Double](), [Double](), [Double]()]//, [Double](), [Double](), [Double](), [Double](), [Double]()]
+    var data = [[Double](), [Double](), [Double](), [Double]()]//, [Double](), [Double](), [Double](), [Double](), [Double]()]
     
     var timer: Timer?
     var seconds = 0
@@ -75,6 +78,7 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        micTracker.start()
         //init recorder
         recordingSession = AVAudioSession.sharedInstance()
         
@@ -100,20 +104,35 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setupScrollView() {
-        let size = CGSize(width: UIScreen.main.bounds.width, height: 130)
+        let size = CGSize(width: UIScreen.main.bounds.width, height: 150)
         var location = CGPoint(x: 0, y: 0)
         
         let space: CGFloat = 5
         
-        charts = [pullingChartView, xValueChartView, yValueChartView]//, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
+        charts = [micChartView, pullingChartView, xValueChartView, yValueChartView]//, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
         for k in 0..<charts.count {
             charts[k] = DataChartView(frame: CGRect(origin: location, size: size))
             charts[k]?.tag = k
             charts[k]?.titleLabel.text = names[k] + ":"
+            charts[k]?.delegate = self
             
             if k == 0 {
+                charts[k]?.sliderOutlet.minimumValue = 0
+                charts[k]?.sliderOutlet.maximumValue = 1
+                
+                charts[k]?.sliderOutlet.value = 0.3
+            }
+            else if k == 1 {
                 charts[k]?.sliderOutlet.minimumValue = 10
                 charts[k]?.sliderOutlet.maximumValue = 2000
+                
+                charts[k]?.sliderOutlet.value = 65
+            }
+            else if k == 2 {
+                charts[k]?.sliderOutlet.value = 365
+            }
+            else if k == 3 {
+                charts[k]?.sliderOutlet.value = 1630
             }
             
             self.scrollView.addSubview(charts[k]!)
@@ -121,6 +140,19 @@ final class SerialViewController: UIViewController, UITextFieldDelegate {
         }
         
         self.scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: location.y)
+    }
+    
+    var masBool = [false, false, false, false]
+    func didChangeCough(index: Int, value: Bool) {
+        masBool[index] = value
+        
+        if (masBool[0] && masBool[1]) {
+            if (masBool[2] || masBool[3]) {
+                networkStatusLabel.text = "КАШЕЛЬ!!!"
+            }
+            else { networkStatusLabel.text = "---" }
+        }
+        else { networkStatusLabel.text = "---" }
     }
     
     func startRecording() {
@@ -374,8 +406,9 @@ extension SerialViewController: BluetoothSerialDelegate {
         dataArray.removeLast()
         
         for row in dataArray {
-            let values = row.components(separatedBy: " ")
+            var values = row.components(separatedBy: " ")
             if values.count == 8 {//charts.count {
+                values.insert("\(micTracker.amplitude)", at: 0)
                 for k in 0..<charts.count {
                     if let value = Double(values[k]), charts[k] != nil {
 //                        if k != 0 {

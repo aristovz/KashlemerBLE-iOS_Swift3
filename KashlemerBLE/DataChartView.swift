@@ -9,12 +9,17 @@
 import UIKit
 import Darwin
 
+protocol DataChartDelegate {
+    func didChangeCough(index: Int, value: Bool)
+}
+
 class DataChartView: UIView {
 
     @IBOutlet weak var chartView: MonitoringChartView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var sliderOutlet: UISlider!
+    @IBOutlet weak var porogLabel: UILabel!
     
     var limit = 20
     var buffer = [Double]()
@@ -25,7 +30,7 @@ class DataChartView: UIView {
 //        }
 //    }
     var countAvrg: UInt = 0
-    
+    var delegate: DataChartDelegate?
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -50,7 +55,7 @@ class DataChartView: UIView {
             .flexibleWidth,
             .flexibleHeight
         ]
-        
+        porogLabel.text = "\(Int(sliderOutlet.value))"
         chartView.initChartView()
         
         // Show the view.
@@ -94,12 +99,15 @@ class DataChartView: UIView {
         
         //dataLabel.text = "\(sum)"
         //chartView.addEntry(value: sum)
-        
+        delegate?.didChangeCough(index: Int(self.tag), value: buffer.max()! - sum > Double(sliderOutlet.value))
         return buffer.max()! - sum > Double(sliderOutlet.value)
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        titleLabel.text = "\(Int(sender.value))"
+        if self.tag == 0 { porogLabel.text = "\(sender.value)" }
+        else {
+            porogLabel.text = "\(Int(sender.value))"
+        }
         buffer.removeAll()
     }
     
