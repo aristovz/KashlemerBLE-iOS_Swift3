@@ -88,7 +88,7 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
             recordingSession.requestRecordPermission() { allowed in
                 DispatchQueue.main.async {
                     if allowed {
-                        //self.startRecording()
+                        self.startRecording()
                     } else {
                         // failed to record!
                     }
@@ -121,18 +121,22 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
                 charts[k]?.sliderOutlet.maximumValue = 1
                 
                 charts[k]?.sliderOutlet.value = 0.3
+                charts[k]?.porogLabel.text = "\(0.3)"
             }
             else if k == 1 {
                 charts[k]?.sliderOutlet.minimumValue = 10
                 charts[k]?.sliderOutlet.maximumValue = 2000
                 
                 charts[k]?.sliderOutlet.value = 65
+                charts[k]?.porogLabel.text = "\(65)"
             }
             else if k == 2 {
                 charts[k]?.sliderOutlet.value = 365
+                charts[k]?.porogLabel.text = "\(365)"
             }
             else if k == 3 {
                 charts[k]?.sliderOutlet.value = 1630
+                charts[k]?.porogLabel.text = "\(1630)"
             }
             
             self.scrollView.addSubview(charts[k]!)
@@ -146,13 +150,10 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
     func didChangeCough(index: Int, value: Bool) {
         masBool[index] = value
         
-        if (masBool[0] && masBool[1]) {
-            if (masBool[2] || masBool[3]) {
-                networkStatusLabel.text = "КАШЕЛЬ!!!"
-            }
-            else { networkStatusLabel.text = "---" }
+        if (masBool[0] && masBool[1] && (masBool[2] || masBool[3])) {
+            detected = true
+            self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
         }
-        else { networkStatusLabel.text = "---" }
     }
     
     func startRecording() {
@@ -172,10 +173,10 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
             finishRecording(success: false)
         }
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeLapse)) {
-//            self.finishRecording(success: true)
-////            print("3 sec")
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeLapse)) {
+            self.finishRecording(success: true)
+//            print("3 sec")
+        }
     }
     
     func getDocumentsDirectory() -> URL {
@@ -234,7 +235,6 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
             recordButtonOutlet.setImage(#imageLiteral(resourceName: "record"), for: .normal)
             stop()
             seconds = 0
-            
         }
     }
     
@@ -358,33 +358,33 @@ extension SerialViewController: AVAudioRecorderDelegate {
                 })
             }
             
-            self.networkStatusLabel.text = "Запись завершена!"
+//            self.networkStatusLabel.text = "Запись завершена!"
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+//                self.networkStatusLabel.text = "Отправка на сервер"
+//                
+//                var dataArr = [String: [Double]]()
+//                let nam = ["pull", "acx", "acy", "acz", "tmp", "gyx", "gyy", "gyz"]
+//                
+//                for k in 0..<self.data.count {
+//                    dataArr[nam[k]] = self.data[k]
+//                }
+//                
+//                API.uploadAudioWithData(from: self.currentAudioURL, with: dataArr, requestEnd: { (success) in
+//                    self.networkStatusLabel.text = "Загрузка на сервер завершена!"
+//                    
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+//                        self.networkStatusLabel.text = "Начать запись"
+//                    })
+//                    
+//                    for k in 0..<self.data.count {
+//                        self.data[k].removeAll()
+//                    }
+//                })
+//            })
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                self.networkStatusLabel.text = "Отправка на сервер"
-                
-                var dataArr = [String: [Double]]()
-                let nam = ["pull", "acx", "acy", "acz", "tmp", "gyx", "gyy", "gyz"]
-                
-                for k in 0..<self.data.count {
-                    dataArr[nam[k]] = self.data[k]
-                }
-                
-                API.uploadAudioWithData(from: self.currentAudioURL, with: dataArr, requestEnd: { (success) in
-                    self.networkStatusLabel.text = "Загрузка на сервер завершена!"
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                        self.networkStatusLabel.text = "Начать запись"
-                    })
-                    
-                    for k in 0..<self.data.count {
-                        self.data[k].removeAll()
-                    }
-                })
-            })
-            
-            //replaceAudio()
-            //startRecording()
+            replaceAudio()
+            startRecording()
         }
     }
     
