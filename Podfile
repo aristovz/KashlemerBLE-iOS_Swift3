@@ -6,6 +6,7 @@ use_frameworks!
   pod 'Alamofire', '~> 4.0'
   pod 'AudioKit'
   pod 'Charts', :git => 'https://github.com/danielgindi/Charts.git', :branch => 'master'
+  pod 'RealmSwift'
 end
 
 post_install do |installer|

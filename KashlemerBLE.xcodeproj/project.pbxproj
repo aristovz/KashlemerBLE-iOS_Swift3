@@ -27,6 +27,7 @@
 		2F933FA71EA2DD0B00B32FB8 /* SerialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F933FA61EA2DD0A00B32FB8 /* SerialViewController.swift */; };
 		2FCBED281EBA11CA005CAEF9 /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */; };
 		2FCBED2A1EBA11EB005CAEF9 /* DataChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */; };
+		2FF692901F1024AD00CCF6A2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF6928F1F1024AD00CCF6A2 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		2F933FA61EA2DD0A00B32FB8 /* SerialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerialViewController.swift; sourceTree = "<group>"; };
 		2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataChartView.xib; sourceTree = "<group>"; };
+		2FF6928F1F1024AD00CCF6A2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D46E13902CD65466D0B8BB0E /* Pods-KashlemerBLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.debug.xcconfig"; sourceTree = "<group>"; };
 		D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KashlemerBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0981BCC8B60797662E821A2 /* Pods-KashlemerBLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.release.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.release.xcconfig"; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FF692901F1024AD00CCF6A2 /* UserNotifications.framework in Frameworks */,
 				2F43E55A1EA28596000029BF /* CoreBluetooth.framework in Frameworks */,
 				0A82D53EB47FE28CA473AD02 /* Pods_KashlemerBLE.framework in Frameworks */,
 			);
@@ -119,6 +122,7 @@
 		2F43E5581EA28596000029BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FF6928F1F1024AD00CCF6A2 /* UserNotifications.framework */,
 				2F43E5591EA28596000029BF /* CoreBluetooth.framework */,
 				D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */,
 			);
@@ -192,6 +196,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = DSX6W75YR7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

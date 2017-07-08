@@ -12,6 +12,7 @@ import Charts
 import AVFoundation
 import Darwin
 import AudioKit
+import UserNotifications
 
 class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDelegate {
     
@@ -45,7 +46,7 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
     
     var charts = [DataChartView?]()
     var data = [[Double](), [Double](), [Double](), [Double]()]//, [Double](), [Double](), [Double](), [Double](), [Double]()]
-    
+    var oldData = [[Double](), [Double](), [Double](), [Double]()]
     var timer: Timer?
     var seconds = 0
     
@@ -139,6 +140,8 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
                 charts[k]?.porogLabel.text = "\(1630)"
             }
             
+//            self.data[k] = [Double]
+            
             self.scrollView.addSubview(charts[k]!)
             location.y += size.height + space
         }
@@ -153,6 +156,7 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
         if (masBool[0] && masBool[1] && (masBool[2] || masBool[3])) {
             detected = true
             self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
+            sendNotification(title: "\(Date())", text: "Обнаружен кашель!")
         }
     }
     
@@ -171,6 +175,11 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
             audioRecorder.record()
         } catch {
             finishRecording(success: false)
+        }
+        oldData = data
+        
+        for ind in 0..<data.count {
+            self.data[ind].removeAll()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(timeLapse)) {
@@ -243,6 +252,19 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
         charts.forEach({ $0?.limit = Int(sender.value) })
     }
     
+    func sendNotification(title: String, text: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = text
+        content.sound = UNNotificationSound.default()
+        let request = UNNotificationRequest(identifier: "\(Date())", content: content, trigger: nil)
+        //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().add(request) {(error) in
+            if let error = error {
+                print("Uh oh! We had an error: \(error)")
+            }
+        }
+    }
 }
 
 //MARK: AVAudioRecorderDelegate
@@ -333,19 +355,35 @@ extension SerialViewController: AVAudioRecorderDelegate {
         
         if success {
             if detected {
-        
                 merge(audioFiles: [prevAudioURL, currentAudioURL], completion: { (fileURL) in
                     if let url = fileURL {
                         print(url)
                         self.detected = false
                         
-                        API.uploadAudio(from: url, requestEnd: { (success) in
+                        var dataArr = [String: [Double]]()
+                        let nam = ["audioAmpl", "pull", "acy", "acz"]
+        
+                        var currData = self.oldData
+                        
+                        for ind in 0..<self.data.count {
+                            currData[ind] += self.data[ind]
+                        }
+                        
+                        for k in 0..<currData.count {
+                            dataArr[nam[k]] = currData[k]
+                        }
+        
+                        API.uploadAudioWithData(from: url, with: dataArr, requestEnd: { (success) in
                             self.networkStatusLabel.text = "Загрузка на сервер завершена!"
-                            
+        
                             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                                 self.networkStatusLabel.text = "Сканирование"
                             })
                             
+                            for k in 0..<self.data.count {
+                                self.data[k].removeAll()
+                            }
+//
                             let fileManager = FileManager.default
                             if fileManager.fileExists(atPath: url.path) {
                                 do {
@@ -354,34 +392,11 @@ extension SerialViewController: AVAudioRecorderDelegate {
                                 catch { }
                             }
                         })
+                        
+                        
                     }
                 })
             }
-            
-//            self.networkStatusLabel.text = "Запись завершена!"
-//            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-//                self.networkStatusLabel.text = "Отправка на сервер"
-//                
-//                var dataArr = [String: [Double]]()
-//                let nam = ["pull", "acx", "acy", "acz", "tmp", "gyx", "gyy", "gyz"]
-//                
-//                for k in 0..<self.data.count {
-//                    dataArr[nam[k]] = self.data[k]
-//                }
-//                
-//                API.uploadAudioWithData(from: self.currentAudioURL, with: dataArr, requestEnd: { (success) in
-//                    self.networkStatusLabel.text = "Загрузка на сервер завершена!"
-//                    
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-//                        self.networkStatusLabel.text = "Начать запись"
-//                    })
-//                    
-//                    for k in 0..<self.data.count {
-//                        self.data[k].removeAll()
-//                    }
-//                })
-//            })
             
             replaceAudio()
             startRecording()
@@ -417,9 +432,9 @@ extension SerialViewController: BluetoothSerialDelegate {
                         
                         self.charts[k]!.addEntry(value: value)
                         
-                        if timer != nil {
+                        //if timer != nil {
                             self.data[k].append(value)
-                        }
+                        //}
                     }	
                 }
             }
@@ -429,6 +444,7 @@ extension SerialViewController: BluetoothSerialDelegate {
     func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
         self.statusLabel.text = "Соединение прервано!"
         self.statusLabel.textColor = .red
+        sendNotification(title: "\(Date())", text: "Соединение прервано! Перезапустите программу")
     }
     
     func serialDidConnect(_ peripheral: CBPeripheral) {

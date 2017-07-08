@@ -80,7 +80,7 @@ class DataChartView: UIView {
         buffer.append(value)
         
         if buffer.count > limit - 1 {
-            print(Date().timeIntervalSince(timeStart))
+            //print(Date().timeIntervalSince(timeStart))
             dataLabel.textColor = checkCough() ? .red : .green
             buffer.removeAll()
             timeStart = Date()
@@ -95,7 +95,7 @@ class DataChartView: UIView {
 //        avrg = (avrg * Double(countAvrg) + sum) / Double(countAvrg + 1)
 //        countAvrg += 1
         
-        print("\(tag) - \(buffer.max()!) - \(sum) = \(buffer.max()! - sum)")
+        //print("\(tag) - \(buffer.max()!) - \(sum) = \(buffer.max()! - sum)")
         
         //dataLabel.text = "\(sum)"
         //chartView.addEntry(value: sum)

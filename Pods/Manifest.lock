@@ -4,11 +4,17 @@ PODS:
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
+  - Realm (2.7.0):
+    - Realm/Headers (= 2.7.0)
+  - Realm/Headers (2.7.0)
+  - RealmSwift (2.7.0):
+    - Realm (= 2.7.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AudioKit
   - Charts (from `https://github.com/danielgindi/Charts.git`, branch `master`)
+  - RealmSwift
 
 EXTERNAL SOURCES:
   Charts:
@@ -24,7 +30,9 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AudioKit: 73c43705575e483623bf3cf306f823a8677aebdd
   Charts: e955b9a241a14a8971d70143002c8ab1610d26b6
+  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
 
-PODFILE CHECKSUM: f67f5f723748b8e0a483032e17cf3c3910ce2a33
+PODFILE CHECKSUM: 388f66ea52f65752e0e2518214aed3743287c687
 
 COCOAPODS: 1.2.0.beta.1
