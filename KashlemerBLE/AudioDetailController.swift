@@ -18,6 +18,7 @@ class AudioDetailController: UIViewController {
     
     var player: MusicPlayer!
     
+    var audioAmplChartView: DataChartView!
     var pullingChartView: DataChartView!
     var xValueChartView: DataChartView!
     var yValueChartView: DataChartView!
@@ -29,7 +30,7 @@ class AudioDetailController: UIViewController {
     var GyYValueChartView: DataChartView!
     var GyZValueChartView: DataChartView!
     
-    let names = ["Натяжение", "AcX", "AcY", "AcZ", "Tmp", "GyX", "GyY", "GyZ"]
+    let names = ["Звук амплит.", "Натяжение", "AcX", "AcY", "AcZ", "Tmp", "GyX", "GyY", "GyZ"]
     
     var charts = [DataChartView?]()
     
@@ -59,7 +60,7 @@ class AudioDetailController: UIViewController {
             
             let space: CGFloat = 5
             
-            charts = [pullingChartView, xValueChartView, yValueChartView, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
+            charts = [audioAmplChartView, pullingChartView, xValueChartView, yValueChartView, zValueChartView, tmpChartView, GyXValueChartView, GyYValueChartView, GyZValueChartView]
             for k in 0..<charts.count {
                 charts[k] = DataChartView(frame: CGRect(origin: location, size: size))
                 charts[k]?.titleLabel.text = names[k] + ":"
@@ -75,6 +76,7 @@ class AudioDetailController: UIViewController {
             for value in audio.data {
                 for k in 0..<charts.count {
                     switch k {
+                    case 0: charts[k]?.addEntry(value: value.audioAmpl)
                     case 0: charts[k]?.addEntry(value: value.pull)
                     case 1: charts[k]?.addEntry(value: value.acx)
                     case 2: charts[k]?.addEntry(value: value.acy)

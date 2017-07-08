@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class Global {
     
@@ -20,4 +21,7 @@ class Global {
             return "http://auto.nk5.ru/"
     }
     
+    class func incrementID(type: Object.Type) -> Int {
+        return (realm.objects(type).max(ofProperty: "id") as Int? ?? 0) + 1
+    }
 }

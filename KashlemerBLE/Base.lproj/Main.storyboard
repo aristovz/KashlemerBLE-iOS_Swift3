@@ -115,7 +115,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KhN-Y3-AZ6">
-                                    <rect key="frame" x="178" y="32" width="20" height="20"/>
+                                    <rect key="frame" x="10" y="32" width="20" height="20"/>
                                     <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </activityIndicatorView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBi-Mw-hl0">
@@ -124,7 +124,7 @@
                                         <constraint firstAttribute="width" secondItem="eBi-Mw-hl0" secondAttribute="height" multiplier="1:1" id="923-Pp-mUH"/>
                                         <constraint firstAttribute="height" constant="30" id="Yx6-eX-NOa"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="delete"/>
+                                    <state key="normal" image="delete"/>
                                     <connections>
                                         <action selector="closeButtonAction:" destination="kn3-Bd-kAO" eventType="touchUpInside" id="9Th-zI-jpm"/>
                                     </connections>
@@ -138,9 +138,9 @@
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="KhN-Y3-AZ6" firstAttribute="leading" secondItem="Pyn-aM-gC7" secondAttribute="leading" constant="10" id="1dL-R4-ZVP"/>
                                 <constraint firstAttribute="trailing" secondItem="eBi-Mw-hl0" secondAttribute="trailing" constant="8" id="HXZ-Nc-BDg"/>
                                 <constraint firstItem="KhN-Y3-AZ6" firstAttribute="centerY" secondItem="eBi-Mw-hl0" secondAttribute="centerY" id="UpE-VS-gRO"/>
-                                <constraint firstItem="KhN-Y3-AZ6" firstAttribute="centerX" secondItem="Pyn-aM-gC7" secondAttribute="centerX" id="j9T-XS-uhA"/>
                                 <constraint firstItem="eBi-Mw-hl0" firstAttribute="centerY" secondItem="Pyn-aM-gC7" secondAttribute="centerY" constant="10" id="m9q-6c-rFh"/>
                                 <constraint firstItem="5ev-Ky-0MQ" firstAttribute="centerX" secondItem="Pyn-aM-gC7" secondAttribute="centerX" id="wAM-B3-ESE"/>
                                 <constraint firstItem="5ev-Ky-0MQ" firstAttribute="centerY" secondItem="eBi-Mw-hl0" secondAttribute="centerY" id="zYm-mg-M3x"/>
@@ -155,7 +155,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1231511231234.m4a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV8-pZ-xbZ">
-                                            <rect key="frame" x="48" y="13" width="319" height="21"/>
+                                            <rect key="frame" x="48" y="13" width="319" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -179,16 +179,26 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.04.2017 10:53" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jQ-DW-wEO">
-                                            <rect key="frame" x="48" y="34" width="99" height="15"/>
+                                            <rect key="frame" x="48" y="33.5" width="99" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHH-kX-Pv6">
+                                            <rect key="frame" x="290" y="8.5" width="77" height="42"/>
+                                            <state key="normal" title="Отправить"/>
+                                            <connections>
+                                                <action selector="sendButtonAction:" destination="kn3-Bd-kAO" eventType="touchUpInside" id="K7i-Bx-VtT"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="6jQ-DW-wEO" firstAttribute="top" secondItem="UV8-pZ-xbZ" secondAttribute="bottom" id="5Yk-7r-wzr"/>
+                                        <constraint firstItem="vHH-kX-Pv6" firstAttribute="top" secondItem="13m-Hh-cgG" secondAttribute="topMargin" id="81d-sI-PLS"/>
                                         <constraint firstItem="6jQ-DW-wEO" firstAttribute="leading" secondItem="UV8-pZ-xbZ" secondAttribute="leading" id="M0C-vV-x7p"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="vHH-kX-Pv6" secondAttribute="bottom" id="PbL-IH-0nG"/>
                                         <constraint firstItem="2bi-WK-Rf6" firstAttribute="centerY" secondItem="13m-Hh-cgG" secondAttribute="centerY" id="QKZ-Vv-6Jv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vHH-kX-Pv6" secondAttribute="trailing" id="X80-f9-dKa"/>
                                         <constraint firstItem="UV8-pZ-xbZ" firstAttribute="leading" secondItem="2bi-WK-Rf6" secondAttribute="trailing" constant="8" id="YRr-fA-Kbi"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="2bi-WK-Rf6" secondAttribute="leading" id="gll-z4-azA"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="UV8-pZ-xbZ" secondAttribute="trailing" id="n7U-og-iVr"/>
@@ -199,6 +209,7 @@
                                     <outlet property="dateLabel" destination="6jQ-DW-wEO" id="epf-BH-YPT"/>
                                     <outlet property="nameLabel" destination="UV8-pZ-xbZ" id="d7m-7G-Ebo"/>
                                     <outlet property="playButtonOutlet" destination="2bi-WK-Rf6" id="Un3-iv-DRz"/>
+                                    <outlet property="sendButton" destination="vHH-kX-Pv6" id="xD4-gD-9Ia"/>
                                     <segue destination="68l-qC-WX9" kind="show" identifier="toAudioDetail" id="i8M-fg-l7b"/>
                                 </connections>
                             </tableViewCell>

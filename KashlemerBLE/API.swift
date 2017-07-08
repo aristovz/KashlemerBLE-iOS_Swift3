@@ -31,11 +31,12 @@ class API {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+                requestEnd(false)
             }
         }
     }
     
-    class func uploadAudioWithData(from url: URL, with data: [String: [Double]], requestEnd: @escaping (Bool) -> ()) {
+    class func uploadAudioWithData(from url: URL, at date: Date, with data: [String: [Double]], requestEnd: @escaping (Bool) -> ()) {
         
         do {
             //Convert to Data
@@ -45,8 +46,12 @@ class API {
             if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
                 //print(JSONString)
         
+                let formater = DateFormatter()
+                formater.dateFormat = "yyyy-M-d H:mm:s"
+                
                 let parameters = [
                     "name": "\(Int(Date().timeIntervalSince1970)).m4a",//url.lastPathComponent
+                    "date": formater.string(from: date),
                     "data": JSONString
                 ]
                 
@@ -58,12 +63,17 @@ class API {
                 }, to: "http://auto.nk5.ru/audio.uploadNewFile") { (result) in
                     switch result {
                     case .success(let upload, _, _) :
-                        upload.responseJSON { response in
-                            //print(response)
-                            requestEnd(true)
+                        upload.responseString { response in
+                            switch response.result {
+                            case .failure:
+                                requestEnd(false)
+                            case .success:
+                                requestEnd(true)
+                            }
                         }
                     case .failure(let error):
                         print(error.localizedDescription)
+                        requestEnd(false)
                     }
                 }
             }
@@ -90,12 +100,17 @@ class API {
                                 let url = audio["url"] as? String,
                                 let date = (audio["date"] as? String)?.dateFromISO8601 {
                                 
-                                let audioObject = Audio(id: id, name: name, url: url, date: date)
+                                let audioObject = Audio()//Audio(id: id, name: name, url: url, date: date)
+                                audioObject.id = id
+                                audioObject.name = name
+                                audioObject.url = url
+                                audioObject.date = date
                                 
                                 if needData {
                                     if let data = audio["data"] as? [[String: Any]] {
                                         for row in data {
                                             if let id = row["id"] as? Int,
+                                                let audioAmpl = row["audioAmpl"] as? Double,
                                                 let pull = row["pull"] as? Double,
                                                 let acx = row["acx"] as? Double,
                                                 let acy = row["acy"] as? Double,
@@ -106,8 +121,19 @@ class API {
                                                 let gyz = row["gyz"] as? Double,
                                                 let audioID = row["audioID"] as? Int {
                                                 
-                                                let data = AudioData(id: id, pull: pull, acx: acx, acy: acy, acz: acz, tmp: tmp, gyx: gyx, gyy: gyy, gyz: gyz, audioID: audioID)
-                                                
+                                                let data = AudioData()
+                                                data.id = id
+                                                data.audioAmpl = audioAmpl
+                                                data.pull = pull
+                                                data.acx = acx
+                                                data.acy = acy
+                                                data.acz = acz
+                                                data.tmp = tmp
+                                                data.gyx = gyx
+                                                data.gyy = gyy
+                                                data.gyz = gyz
+                                                data.audioID = audioID
+
                                                 audioObject.data.append(data)
                                             }
                                         }
@@ -141,6 +167,7 @@ class API {
                         
                         for row in data {
                             if let id = row["id"] as? Int,
+                                let audioAmpl = row["audioAmpl"] as? Double,
                                 let pull = row["pull"] as? Double,
                                 let acx = row["acx"] as? Double,
                                 let acy = row["acy"] as? Double,
@@ -151,7 +178,18 @@ class API {
                                 let gyz = row["gyz"] as? Double,
                                 let audioID = row["audioID"] as? Int {
                                 
-                                let data = AudioData(id: id, pull: pull, acx: acx, acy: acy, acz: acz, tmp: tmp, gyx: gyx, gyy: gyy, gyz: gyz, audioID: audioID)
+                                let data = AudioData()
+                                data.id = id
+                                data.audioAmpl = audioAmpl
+                                data.pull = pull
+                                data.acx = acx
+                                data.acy = acy
+                                data.acz = acz
+                                data.tmp = tmp
+                                data.gyx = gyx
+                                data.gyy = gyy
+                                data.gyz = gyz
+                                data.audioID = audioID
                                 
                                 resData.append(data)
                             }

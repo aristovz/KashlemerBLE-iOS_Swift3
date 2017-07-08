@@ -13,6 +13,7 @@ import AVFoundation
 import Darwin
 import AudioKit
 import UserNotifications
+import RealmSwift
 
 class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDelegate {
     
@@ -156,7 +157,7 @@ class SerialViewController: UIViewController, UITextFieldDelegate, DataChartDele
         if (masBool[0] && masBool[1] && (masBool[2] || masBool[3])) {
             detected = true
             self.networkStatusLabel.text = "Обнаружен кашель! Отправка..."
-            sendNotification(title: "\(Date())", text: "Обнаружен кашель!")
+            sendNotification(title: "Упоминание", text: "Обнаружен кашель!")
         }
     }
     
@@ -372,28 +373,63 @@ extension SerialViewController: AVAudioRecorderDelegate {
                         for k in 0..<currData.count {
                             dataArr[nam[k]] = currData[k]
                         }
-        
-                        API.uploadAudioWithData(from: url, with: dataArr, requestEnd: { (success) in
-                            self.networkStatusLabel.text = "Загрузка на сервер завершена!"
-        
-                            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                                self.networkStatusLabel.text = "Сканирование"
-                            })
+                        
+                        let audio = Audio()
+                        audio.id = Global.incrementID(type: Audio.self)
+                        audio.name = "\(Int(Date().timeIntervalSince1970)).m4a"
+                        audio.url = url.absoluteString
+                        audio.date = Date()
+                        
+                        for k in 0..<dataArr.first!.value.count {
+                            let audioData = AudioData()
+                            audioData.id = Global.incrementID(type: AudioData.self) + k
+                            audioData.audioAmpl = dataArr["audioAmpl"]![k]
+                            audioData.pull = dataArr["pull"]![k]
+                            audioData.acy = dataArr["acy"]![k]
+                            audioData.acz = dataArr["acz"]![k]
                             
-                            for k in 0..<self.data.count {
-                                self.data[k].removeAll()
-                            }
-//
-                            let fileManager = FileManager.default
-                            if fileManager.fileExists(atPath: url.path) {
-                                do {
-                                    try fileManager.removeItem(atPath: url.path)
+                            audio.data.append(audioData)
+                        }
+                        
+                        try! realm.write {
+                            realm.add(audio)
+                        }
+                        
+                        API.uploadAudioWithData(from: url, at: audio.date, with: dataArr, requestEnd: { (success) in
+                            if success {
+                                self.networkStatusLabel.text = "Загрузка на сервер завершена!"
+            
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                                    self.networkStatusLabel.text = "Сканирование"
+                                })
+                                
+                                for k in 0..<self.data.count {
+                                    self.data[k].removeAll()
                                 }
-                                catch { }
+                                
+                                let fileManager = FileManager.default
+                                if fileManager.fileExists(atPath: url.path) {
+                                    do {
+                                        try fileManager.removeItem(atPath: url.path)
+                                    }
+                                    catch { }
+                                }
+                                
+                                try! realm.write {
+                                    realm.delete(audio)
+                                }
+                            }
+                            else {
+                                self.networkStatusLabel.text = "Ошибка загрузки на сервер!"
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                                    self.networkStatusLabel.text = "Сканирование"
+                                })
+
+                                for k in 0..<self.data.count {
+                                    self.data[k].removeAll()
+                                }
                             }
                         })
-                        
-                        
                     }
                 })
             }
@@ -444,7 +480,7 @@ extension SerialViewController: BluetoothSerialDelegate {
     func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
         self.statusLabel.text = "Соединение прервано!"
         self.statusLabel.textColor = .red
-        sendNotification(title: "\(Date())", text: "Соединение прервано! Перезапустите программу")
+        sendNotification(title: "Предупреждение!", text: "Соединение прервано! Перезапустите программу")
     }
     
     func serialDidConnect(_ peripheral: CBPeripheral) {

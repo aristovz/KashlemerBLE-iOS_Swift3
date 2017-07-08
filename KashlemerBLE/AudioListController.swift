@@ -21,12 +21,15 @@ class AudioListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         refresh()
     }
     
     func refresh() {
+        self.audioList.removeAll()
+        self.audioList.append(contentsOf: realm.objects(Audio.self))
+        self.player = MusicPlayer(tracks: self.audioList)
+        self.tableView.reloadData()
+        
         loadingIndicator.startAnimating()
         API.getAllAudio(needData: true) { (audioList, error) in
             guard error == nil else {
@@ -34,7 +37,9 @@ class AudioListController: UITableViewController {
                 return
             }
             
-            self.audioList = audioList!
+            self.audioList.append(contentsOf: audioList!)
+            self.audioList = self.audioList.sorted(by: { $0.date > $1.date })
+            
             self.player = MusicPlayer(tracks: self.audioList)
             self.tableView.reloadData()
             self.loadingIndicator.stopAnimating()
@@ -56,6 +61,58 @@ class AudioListController: UITableViewController {
         player.play()
     }
     
+    @IBAction func sendButtonAction(_ sender: UIButton) {
+        var dataArr = [String: [Double]]()
+        let name = ["audioAmpl", "pull", "acy", "acz"]
+        
+        for n in name {
+            dataArr[n] = [Double]()
+        }
+        
+        let currentAudio = audioList[sender.tag]
+        for data in currentAudio.data {
+            dataArr["audioAmpl"]?.append(data.audioAmpl)
+            dataArr["pull"]?.append(data.pull)
+            dataArr["acy"]?.append(data.acy)
+            dataArr["acz"]?.append(data.acz)
+        }
+        
+        let url = URL(string: currentAudio.url)!
+        
+        sender.setTitle("Отправка!", for: .normal)
+        API.uploadAudioWithData(from: url, at: currentAudio.date, with: dataArr, requestEnd: { (success) in
+            if success {
+                sender.setTitle("Успешно", for: .normal)
+                
+                let fileManager = FileManager.default
+                if fileManager.fileExists(atPath: url.path) {
+                    do {
+                        try fileManager.removeItem(atPath: url.path)
+                    }
+                    catch { }
+                }
+                
+                try! realm.write {
+                    realm.delete(currentAudio)
+                }
+                
+                self.refresh()
+            }
+            else {
+                print("error")
+                sender.setTitle("Ошибка!", for: .normal)
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                    sender.setTitle("Повторить", for: .normal)
+                })
+//
+//                for k in 0..<self.data.count {
+//                    self.data[k].removeAll()
+//                }
+            }
+        })
+    }
+    
     func finishedPlaying(_ myNotification:NSNotification) {
         let cell = self.tableView.cellForRow(at: IndexPath(row: player.currentTrackIndex, section: 0)) as! AudioCell
         cell.playButtonOutlet.setImage(#imageLiteral(resourceName: "play-button"), for: .normal)
@@ -75,14 +132,18 @@ class AudioListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "audioCell", for: indexPath) as! AudioCell
         
-        cell.currentAudio = audioList[indexPath.row]
-        cell.nameLabel.text = cell.currentAudio!.name
+        let currentAudio = audioList[indexPath.row]
+        
+        cell.nameLabel.text = currentAudio.name
         cell.playButtonOutlet.tag = indexPath.row
+        cell.sendButton.tag = indexPath.row
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
         
-        cell.dateLabel.text = dateFormatter.string(from: cell.currentAudio!.date)
+        cell.dateLabel.text = dateFormatter.string(from: currentAudio.date)
+        
+        cell.sendButton.isHidden = !currentAudio.isCached
         
         return cell
     }
@@ -93,17 +154,28 @@ class AudioListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Удалить") { (acition, indexPath) in
-            API.delete(id: self.audioList[indexPath.row].id, requestEnd: { (result, error) in
-                guard error == nil else {
-                    print(error!)
-                    return
-                }
-                
-                if result! {
+            let currentAudio = self.audioList[indexPath.row]
+            
+            if currentAudio.isCached {
+                try! realm.write {
+                    realm.delete(currentAudio)
                     self.audioList.remove(at: indexPath.row)
                     self.tableView.reloadData()
                 }
-            })
+            }
+            else {
+                API.delete(id: self.audioList[indexPath.row].id, requestEnd: { (result, error) in
+                    guard error == nil else {
+                        print(error!)
+                        return
+                    }
+                    
+                    if result! {
+                        self.audioList.remove(at: indexPath.row)
+                        self.tableView.reloadData()
+                    }
+                })
+            }
         }
         
         return [delete]
@@ -125,5 +197,7 @@ class AudioCell: UITableViewCell {
     
     @IBOutlet weak var playButtonOutlet: UIButton!
     
-    var currentAudio: Audio?
+    @IBOutlet weak var sendButton: UIButton!
+    
+    //var currentAudio: Audio?
 }

@@ -7,55 +7,47 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Audio {
-    var id: Int!
-    var name: String!
-    var url: String!
-    var date: Date!
-    var data: [AudioData]!
+class Audio: Object {
+    dynamic var id = 0
+    dynamic var name: String!
+    dynamic var url: String!
+    dynamic var date: Date!
     
-    init(id: Int, name: String, url: String, date: Date, data: [AudioData] = [AudioData]()) {
-        self.id = id
-        self.name = name
-        self.url = url
-        self.date = date
-        self.data = data
+    let data = List<AudioData>()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    var isCached: Bool {
+        get {
+            return !url.contains("auto.nk5.ru")
+        }
     }
 }
 
-class AudioData {
-    var id: Int!
+class AudioData: Object {
+    dynamic var id = 0
     
-    var pull: Double!
+    dynamic var audioAmpl: Double = 0.0
     
-    var acx: Double!
-    var acy: Double!
-    var acz: Double!
+    dynamic var pull: Double = 0.0
     
-    var tmp: Double!
+    dynamic var acx: Double = 0.0
+    dynamic var acy: Double = 0.0
+    dynamic var acz: Double = 0.0
     
-    var gyx: Double!
-    var gyy: Double!
-    var gyz: Double!
+    dynamic var tmp: Double = 0.0
     
-    var audioID: Int!
+    dynamic var gyx: Double = 0.0
+    dynamic var gyy: Double = 0.0
+    dynamic var gyz: Double = 0.0
     
-    init(id: Int, pull: Double!, acx: Double, acy: Double, acz: Double, tmp: Double, gyx: Double, gyy: Double, gyz: Double, audioID: Int) {
-        self.id = id
-        
-        self.pull = pull
-        
-        self.acx = acx
-        self.acy = acy
-        self.acz = acz
-        
-        self.tmp = tmp
-        
-        self.gyx = gyx
-        self.gyy = gyy
-        self.gyz = gyz
-        
-        self.audioID = audioID
+    dynamic var audioID: Int = 0
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

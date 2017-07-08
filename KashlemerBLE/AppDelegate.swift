@@ -10,8 +10,10 @@ import UIKit
 import CoreData
 import AVFoundation
 import UserNotifications
+import RealmSwift
 
 let deviceIdentifier = "EB422218-84F0-4F41-8368-A04BCBB986F1"//"6FFBE749-4FB7-4DEF-99C3-97BDC457DC73"
+let realm = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
             if !accepted {
