@@ -172,6 +172,7 @@
 				2F43E53C1EA28018000029BF /* Resources */,
 				BF7429C5890A77FA5C42F789 /* [CP] Embed Pods Frameworks */,
 				238935C107193F28C408456E /* [CP] Copy Pods Resources */,
+				2F58FA681F4EEF5400EF364A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -194,7 +195,7 @@
 				TargetAttributes = {
 					2F43E53D1EA28018000029BF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = DSX6W75YR7;
+						DevelopmentTeam = 6JW3SHNBTJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -251,6 +252,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		2F58FA681F4EEF5400EF364A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/AudioKit.framework/fix-framework.sh\"";
 		};
 		B776A49EB4B31DD61E0DCD34 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -424,10 +438,10 @@
 			baseConfigurationReference = D46E13902CD65466D0B8BB0E /* Pods-KashlemerBLE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DSX6W75YR7;
+				DEVELOPMENT_TEAM = 6JW3SHNBTJ;
 				INFOPLIST_FILE = KashlemerBLE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.aristovz.KashlemerBLE;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.vsu.KashlemerBLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -438,10 +452,10 @@
 			baseConfigurationReference = E0981BCC8B60797662E821A2 /* Pods-KashlemerBLE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = DSX6W75YR7;
+				DEVELOPMENT_TEAM = 6JW3SHNBTJ;
 				INFOPLIST_FILE = KashlemerBLE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.aristovz.KashlemerBLE;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.vsu.KashlemerBLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

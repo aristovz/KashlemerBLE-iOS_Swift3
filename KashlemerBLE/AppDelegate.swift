@@ -4,7 +4,6 @@
 //
 //  Created by Pavel Aristov on 15.04.17.
 //  Copyright © 2017 aristovz. All rights reserved.
-//
 
 import UIKit
 import CoreData
@@ -12,15 +11,14 @@ import AVFoundation
 import UserNotifications
 import RealmSwift
 
-let deviceIdentifier = "EB422218-84F0-4F41-8368-A04BCBB986F1"//"6FFBE749-4FB7-4DEF-99C3-97BDC457DC73"
+let deviceIdentifier = "6FFBE749-4FB7-4DEF-99C3-97BDC457DC73"//"EB422218-84F0-4F41-8368-A04BCBB986F1"
 let realm = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
