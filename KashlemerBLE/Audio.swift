@@ -23,7 +23,7 @@ class Audio: Object {
     
     var isCached: Bool {
         get {
-            return !url.contains("auto.nk5.ru")
+            return !url.contains("pavel.clashbyte.ru") && !url.contains("auto.nk5.ru")
         }
     }
 }

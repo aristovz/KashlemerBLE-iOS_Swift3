@@ -18,7 +18,7 @@ class Global {
     }
     
     var urlPath: String {
-            return "http://auto.nk5.ru/"
+            return "http://pavel.clashbyte.ru/"
     }
     
     class func incrementID(type: Object.Type) -> Int {

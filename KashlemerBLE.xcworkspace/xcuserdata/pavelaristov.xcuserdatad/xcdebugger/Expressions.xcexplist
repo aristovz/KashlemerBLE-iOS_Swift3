@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AudioDetailController.setupScrollView():AudioDetailController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentAudio">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AudioListController.tableView(_:cellForRowAt:):AudioListController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "audioList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static API.getAllAudio(needData:requestEnd:):API.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(audio[&quot;date&quot;] as? String)?.dateFromISO8601">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SerialViewController.serialDidDiscoverPeripheral(_:RSSI:):SerialViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peripheral.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

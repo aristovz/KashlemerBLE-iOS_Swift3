@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A82D53EB47FE28CA473AD02 /* Pods_KashlemerBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */; };
 		2F0E60531EA30BC60078C2EF /* MonitoringChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0E60521EA30BC60078C2EF /* MonitoringChartView.swift */; };
 		2F2B16701EB783B500C022E1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B166F1EB783B500C022E1 /* API.swift */; };
 		2F2B16721EB7845100C022E1 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2B16711EB7845100C022E1 /* Global.swift */; };
@@ -17,6 +16,8 @@
 		2F43E54C1EA28019000029BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F43E54B1EA28019000029BF /* Assets.xcassets */; };
 		2F43E54F1EA28019000029BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F43E54D1EA28019000029BF /* LaunchScreen.storyboard */; };
 		2F43E55A1EA28596000029BF /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F43E5591EA28596000029BF /* CoreBluetooth.framework */; };
+		2F7DA6C120742B0600169924 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7DA6C020742B0600169924 /* User.swift */; };
+		2F7DA6C5207431A500169924 /* UsersListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7DA6C4207431A500169924 /* UsersListController.swift */; };
 		2F82B8551EBB7FF10080B24B /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B8541EBB7FF10080B24B /* Audio.swift */; };
 		2F82B8591EBB89B30080B24B /* AudioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B8581EBB89B30080B24B /* AudioListController.swift */; };
 		2F82B85B1EBB932F0080B24B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F82B85A1EBB932F0080B24B /* Extension.swift */; };
@@ -28,6 +29,7 @@
 		2FCBED281EBA11CA005CAEF9 /* DataChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */; };
 		2FCBED2A1EBA11EB005CAEF9 /* DataChartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */; };
 		2FF692901F1024AD00CCF6A2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF6928F1F1024AD00CCF6A2 /* UserNotifications.framework */; };
+		44745368210E6B8DCFE50096 /* Pods_KashlemerBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC75DCF4DB6384E6A0586C4 /* Pods_KashlemerBLE.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		2F43E54E1EA28019000029BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F43E5501EA28019000029BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F43E5591EA28596000029BF /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		2F7DA6C020742B0600169924 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2F7DA6C4207431A500169924 /* UsersListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListController.swift; sourceTree = "<group>"; };
 		2F82B8541EBB7FF10080B24B /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		2F82B8581EBB89B30080B24B /* AudioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioListController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		2F82B85A1EBB932F0080B24B /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -53,9 +57,9 @@
 		2FCBED271EBA11CA005CAEF9 /* DataChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChartView.swift; sourceTree = "<group>"; };
 		2FCBED291EBA11EB005CAEF9 /* DataChartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataChartView.xib; sourceTree = "<group>"; };
 		2FF6928F1F1024AD00CCF6A2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		D46E13902CD65466D0B8BB0E /* Pods-KashlemerBLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.debug.xcconfig"; sourceTree = "<group>"; };
-		D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KashlemerBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0981BCC8B60797662E821A2 /* Pods-KashlemerBLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.release.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.release.xcconfig"; sourceTree = "<group>"; };
+		37E9DA86FBF84851BB5E431D /* Pods-KashlemerBLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.release.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.release.xcconfig"; sourceTree = "<group>"; };
+		BFC75DCF4DB6384E6A0586C4 /* Pods_KashlemerBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KashlemerBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5F7D0E87C0FA147006AF6D /* Pods-KashlemerBLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KashlemerBLE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +69,7 @@
 			files = (
 				2FF692901F1024AD00CCF6A2 /* UserNotifications.framework in Frameworks */,
 				2F43E55A1EA28596000029BF /* CoreBluetooth.framework in Frameworks */,
-				0A82D53EB47FE28CA473AD02 /* Pods_KashlemerBLE.framework in Frameworks */,
+				44745368210E6B8DCFE50096 /* Pods_KashlemerBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +81,7 @@
 			children = (
 				2F2B166F1EB783B500C022E1 /* API.swift */,
 				2F82B8541EBB7FF10080B24B /* Audio.swift */,
+				2F7DA6C020742B0600169924 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -87,7 +92,7 @@
 				2F43E5401EA28019000029BF /* KashlemerBLE */,
 				2F43E53F1EA28019000029BF /* Products */,
 				2F43E5581EA28596000029BF /* Frameworks */,
-				8C895C30A4802E991E1ECCCE /* Pods */,
+				FD1F2990226D33CE267E12E3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +114,7 @@
 				2F82B8581EBB89B30080B24B /* AudioListController.swift */,
 				2F82B85E1EBBE1B60080B24B /* AudioDetailController.swift */,
 				2F82B8601EBBF1820080B24B /* ChartViewController.swift */,
+				2F7DA6C4207431A500169924 /* UsersListController.swift */,
 				2F43E5451EA28019000029BF /* Main.storyboard */,
 				2F43E54D1EA28019000029BF /* LaunchScreen.storyboard */,
 				2F43E54B1EA28019000029BF /* Assets.xcassets */,
@@ -124,7 +130,7 @@
 			children = (
 				2FF6928F1F1024AD00CCF6A2 /* UserNotifications.framework */,
 				2F43E5591EA28596000029BF /* CoreBluetooth.framework */,
-				D9CC8FD6551BEED863018604 /* Pods_KashlemerBLE.framework */,
+				BFC75DCF4DB6384E6A0586C4 /* Pods_KashlemerBLE.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,11 +156,11 @@
 			name = ChartView;
 			sourceTree = "<group>";
 		};
-		8C895C30A4802E991E1ECCCE /* Pods */ = {
+		FD1F2990226D33CE267E12E3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D46E13902CD65466D0B8BB0E /* Pods-KashlemerBLE.debug.xcconfig */,
-				E0981BCC8B60797662E821A2 /* Pods-KashlemerBLE.release.xcconfig */,
+				DC5F7D0E87C0FA147006AF6D /* Pods-KashlemerBLE.debug.xcconfig */,
+				37E9DA86FBF84851BB5E431D /* Pods-KashlemerBLE.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -166,13 +172,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F43E5531EA28019000029BF /* Build configuration list for PBXNativeTarget "KashlemerBLE" */;
 			buildPhases = (
-				B776A49EB4B31DD61E0DCD34 /* [CP] Check Pods Manifest.lock */,
+				F86472E8FF4BE41790944CF4 /* [CP] Check Pods Manifest.lock */,
 				2F43E53A1EA28018000029BF /* Sources */,
 				2F43E53B1EA28018000029BF /* Frameworks */,
 				2F43E53C1EA28018000029BF /* Resources */,
-				BF7429C5890A77FA5C42F789 /* [CP] Embed Pods Frameworks */,
-				238935C107193F28C408456E /* [CP] Copy Pods Resources */,
-				2F58FA681F4EEF5400EF364A /* ShellScript */,
+				2A7B28CE6F6FC0F8FD2BAB6E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = aristovz;
 				TargetAttributes = {
 					2F43E53D1EA28018000029BF = {
@@ -238,62 +242,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		238935C107193F28C408456E /* [CP] Copy Pods Resources */ = {
+		2A7B28CE6F6FC0F8FD2BAB6E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2F58FA681F4EEF5400EF364A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/AudioKit.framework/fix-framework.sh\"";
-		};
-		B776A49EB4B31DD61E0DCD34 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		BF7429C5890A77FA5C42F789 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${PODS_ROOT}/AudioKit/iOS/AudioKit.framework",
+				"${PODS_ROOT}/AudioKit/iOS/AudioKitUI.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKitUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KashlemerBLE/Pods-KashlemerBLE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F86472E8FF4BE41790944CF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KashlemerBLE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -309,8 +301,10 @@
 				2F82B85D1EBBA11D0080B24B /* MusicPlayer.swift in Sources */,
 				2F43E54A1EA28019000029BF /* KashlemerBLE.xcdatamodeld in Sources */,
 				2F43E5421EA28019000029BF /* AppDelegate.swift in Sources */,
+				2F7DA6C5207431A500169924 /* UsersListController.swift in Sources */,
 				2F82B85B1EBB932F0080B24B /* Extension.swift in Sources */,
 				2F933FA51EA2DBF000B32FB8 /* BluetoothSerial.swift in Sources */,
+				2F7DA6C120742B0600169924 /* User.swift in Sources */,
 				2F2B16701EB783B500C022E1 /* API.swift in Sources */,
 				2FCBED281EBA11CA005CAEF9 /* DataChartView.swift in Sources */,
 				2F933FA71EA2DD0B00B32FB8 /* SerialViewController.swift in Sources */,
@@ -351,7 +345,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -359,7 +355,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -400,7 +400,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -408,7 +410,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -435,11 +441,12 @@
 		};
 		2F43E5541EA28019000029BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D46E13902CD65466D0B8BB0E /* Pods-KashlemerBLE.debug.xcconfig */;
+			baseConfigurationReference = DC5F7D0E87C0FA147006AF6D /* Pods-KashlemerBLE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6JW3SHNBTJ;
 				INFOPLIST_FILE = KashlemerBLE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.vsu.KashlemerBLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -449,11 +456,12 @@
 		};
 		2F43E5551EA28019000029BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0981BCC8B60797662E821A2 /* Pods-KashlemerBLE.release.xcconfig */;
+			baseConfigurationReference = 37E9DA86FBF84851BB5E431D /* Pods-KashlemerBLE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6JW3SHNBTJ;
 				INFOPLIST_FILE = KashlemerBLE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.vsu.KashlemerBLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";

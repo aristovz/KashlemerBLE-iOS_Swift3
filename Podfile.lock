@@ -1,38 +1,38 @@
 PODS:
-  - Alamofire (4.4.0)
-  - AudioKit (3.7)
-  - Charts (3.0.2):
-    - Charts/Core (= 3.0.2)
-  - Charts/Core (3.0.2)
-  - Realm (2.7.0):
-    - Realm/Headers (= 2.7.0)
-  - Realm/Headers (2.7.0)
-  - RealmSwift (2.7.0):
-    - Realm (= 2.7.0)
+  - Alamofire (4.7.3)
+  - AudioKit (4.0.4):
+    - AudioKit/UI (= 4.0.4)
+  - AudioKit/UI (4.0.4)
+  - Charts (3.0.5):
+    - Charts/Core (= 3.0.5)
+  - Charts/Core (3.0.5)
+  - Realm (3.7.6):
+    - Realm/Headers (= 3.7.6)
+  - Realm/Headers (3.7.6)
+  - RealmSwift (3.7.6):
+    - Realm (= 3.7.6)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
-  - AudioKit
-  - Charts (from `https://github.com/danielgindi/Charts.git`, branch `master`)
-  - RealmSwift
+  - AudioKit (~> 4.0.3)
+  - Charts (~> 3.0.4)
+  - RealmSwift (~> 3.7.6)
 
-EXTERNAL SOURCES:
-  Charts:
-    :branch: master
-    :git: https://github.com/danielgindi/Charts.git
-
-CHECKOUT OPTIONS:
-  Charts:
-    :commit: f23e872e7573f8c79862ff4822cfc5683703d424
-    :git: https://github.com/danielgindi/Charts.git
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AudioKit
+    - Charts
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  AudioKit: 73c43705575e483623bf3cf306f823a8677aebdd
-  Charts: e955b9a241a14a8971d70143002c8ab1610d26b6
-  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
-  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AudioKit: 647145c0462dc9dc8a8582998cd6db5f2e1ea848
+  Charts: 45cdc985b764c838b35ee47eb1365d15735f6d1a
+  Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
+  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
 
-PODFILE CHECKSUM: 388f66ea52f65752e0e2518214aed3743287c687
+PODFILE CHECKSUM: 1bed672968ca8379098c116d70f593eb9c9bf803
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.5.3

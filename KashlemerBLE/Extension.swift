@@ -8,6 +8,13 @@
 
 import Foundation
 import UIKit
+extension Int {
+    var ageString: String {
+        get {
+            return (self % 10 == 1 && self % 100 != 11) ? "год" : (self % 10 == 2 && self != 12) || (self % 10 == 3 && self != 13) || (self % 10 == 4 && self == 14) ? "года" : "лет"
+        }
+    }
+}
 
 extension Date {
     func startOfYear() -> Date? {
@@ -38,6 +45,10 @@ extension Date {
     }()
     var iso8601: String {
         return Date.iso8601Formatter.string(from: self)
+    }
+    
+    var age: Int {
+        return Calendar.current.dateComponents([.year], from: self, to: Date()).year!
     }
 }
 
